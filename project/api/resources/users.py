@@ -5,7 +5,7 @@ from flask import Blueprint, jsonify, request
 from sqlalchemy import exc
 
 from project.api.utils import authenticate, is_admin
-from project.api.models import User
+from project.api.models.users import User
 from project import db
 
 
@@ -15,8 +15,8 @@ users_blueprint = Blueprint('users', __name__)
 @users_blueprint.route('/ping', methods=['GET'])
 def ping_pong():
     return jsonify({
-        'status': 'success',
-        'message': 'pong!'
+        'status': 'success1232343234',
+        'message': 'pong!dfgdfg'
     })
 
 
@@ -49,7 +49,7 @@ def add_user(resp):
             db.session.commit()
             response_object = {
                 'status': 'success',
-                'message': f'{email} was added!'
+                'message': 'was added!'
             }
             return jsonify(response_object), 201
         else:

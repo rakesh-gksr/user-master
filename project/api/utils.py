@@ -5,7 +5,7 @@ from functools import wraps
 
 from flask import request, jsonify
 
-from project.api.models import User
+from project.api.models.users import User
 
 
 def authenticate(f):

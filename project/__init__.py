@@ -25,7 +25,7 @@ def create_app():
     CORS(app)
 
     # set config
-    app_settings = os.getenv('APP_SETTINGS')
+    app_settings = "project.config.TestingConfig"
     app.config.from_object(app_settings)
 
     # set up extensions
@@ -34,9 +34,11 @@ def create_app():
     migrate.init_app(app, db)
 
     # register blueprints
-    from project.api.users import users_blueprint
-    from project.api.auth import auth_blueprint
+    from project.api.resources.users import users_blueprint
+    from project.api.resources.auth import auth_blueprint
+    from project.api.resources.quotes import quotes_blueprint
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(users_blueprint)
+    app.register_blueprint(quotes_blueprint)
 
     return app

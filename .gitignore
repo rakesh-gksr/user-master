@@ -1,0 +1,7 @@
+*.py[cod]
+__pycache__/
+.Python
+env/
+bin/
+build/
+.DS_Store

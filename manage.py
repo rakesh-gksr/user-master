@@ -8,8 +8,8 @@ from flask_script import Manager
 from flask_migrate import MigrateCommand
 
 from project import create_app, db
-from project.api.models import User
-
+from project.api.models.users import User
+from project.api.models.quotes import Author, Quote
 
 COV = coverage.coverage(
     branch=True,

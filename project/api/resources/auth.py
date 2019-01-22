@@ -5,7 +5,7 @@ from flask import Blueprint, jsonify, request
 from sqlalchemy import exc, or_
 
 from project.api.utils import authenticate
-from project.api.models import User
+from project.api.models.users import User
 from project import db, bcrypt
 
 
@@ -15,6 +15,7 @@ auth_blueprint = Blueprint('auth', __name__)
 @auth_blueprint.route('/auth/register', methods=['POST'])
 def register_user():
     # get post data
+
     post_data = request.get_json()
     if not post_data:
         response_object = {
