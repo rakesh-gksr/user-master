@@ -1,7 +1,10 @@
-# Flask Microservices - Users Service
 
-[![Build Status](https://travis-ci.org/testdrivenio/flask-microservices-users.svg?branch=master)](https://travis-ci.org/testdrivenio/flask-microservices-users)
+run docker image on mac
 
-## Want to learn how to build this project?
+docker run -p 5000:4000 --volume=/Users/admin/Documents/flask_web:/appaa flaskdock:latest
 
-Check out [testdriven.io](http://testdriven.io/).
+1. Steps to push the docker image to docker hub:
+
+1. docker login --username username --password password 
+2. docker tag [my-image] [username/your-repo-name] 
+3. docker push username/your-repo-name

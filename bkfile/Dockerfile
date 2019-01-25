@@ -1,5 +1,11 @@
 FROM python:3.6.1
 
+# install environment dependencies
+RUN apt-get update -yqq \
+  && apt-get install -yqq --no-install-recommends \
+    netcat \
+  && apt-get -q clean
+
 # set working directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -10,11 +16,11 @@ ADD ./requirements.txt /usr/src/app/requirements.txt
 # install requirements
 RUN pip install -r requirements.txt
 
+# add entrypoint.sh
+ADD ./entrypoint.sh /usr/src/app/entrypoint.sh
+
 # add app
 ADD . /usr/src/app
 
-# unblock port 4000 for the Flask app to run on
-EXPOSE 4000
-
 # run server
-CMD python manage.py runserver -h 0.0.0.0 -p 4000
+CMD ["./entrypoint.sh"]
