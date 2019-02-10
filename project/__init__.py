@@ -37,8 +37,10 @@ def create_app():
     from project.api.resources.users import users_blueprint
     from project.api.resources.auth import auth_blueprint
     from project.api.resources.quotes import quotes_blueprint
+    from project.api.resources.jobs import jobs_blueprint
     app.register_blueprint(auth_blueprint)
     app.register_blueprint(users_blueprint)
     app.register_blueprint(quotes_blueprint)
+    app.register_blueprint(jobs_blueprint)
 
     return app

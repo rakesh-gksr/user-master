@@ -51,6 +51,12 @@ def cov():
         return 0
     return 1
 
+@manager.command
+def recreate_db():
+    """Recreates a database."""
+    db.drop_all()
+    db.create_all()
+    db.session.commit()
 
 @manager.command
 def recreate_db():

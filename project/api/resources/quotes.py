@@ -1,8 +1,7 @@
 import datetime
 
 from flask import Blueprint, jsonify, request
-from sqlalchemy import exc
-from marshmallow import Schema, fields, ValidationError, pre_load
+from marshmallow import ValidationError
 from project import db
 
 from project.api.models.quotes import AuthorSchema, QuoteSchema, Author, Quote
@@ -49,6 +48,7 @@ def get_quote(pk):
     result = quote_schema.dump(quote)
     return jsonify({'quote': result})
 
+
 @quotes_blueprint.route('/quotes', methods=['POST'])
 def new_quote():
     json_data = request.get_json()
@@ -58,8 +58,14 @@ def new_quote():
     # Validate and deserialize input
     try:
         data = quote_schema.load(json_data)
+        import pprint
+        pprint.pprint(data)
     except ValidationError as err:
         return jsonify(err.messages), 422
+    return jsonify({
+        'message': 'Created new quote.',
+        'quote': True,
+    })
     first, last = data[0]['author']['first'], data[0]['author']['last']
     author = Author.query.filter_by(first=first, last=last).first()
     if author is None:

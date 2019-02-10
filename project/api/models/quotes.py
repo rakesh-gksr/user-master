@@ -1,8 +1,4 @@
 # project/api/models/quotes.py
-import datetime
-
-import jwt
-from flask import current_app
 from marshmallow import Schema, fields, ValidationError, pre_load
 
 from project import db
@@ -26,14 +22,15 @@ class Quote(db.Model):
 
 ##### SCHEMAS #####
 
+
 class AuthorSchema(Schema):
     id = fields.Int(dump_only=True)
     first = fields.Str()
     last = fields.Str()
-    formatted_name = fields.Method('format_name', dump_only=True)
-
-    def format_name(self, author):
-        return '{}, {}'.format(author.last, author.first)
+    # formatted_name = fields.Method('format_name', dump_only=True)
+    #
+    # def format_name(self, author):
+    #     return '{}, {}'.format(author.last, author.first)
 
 
 # Custom validator
