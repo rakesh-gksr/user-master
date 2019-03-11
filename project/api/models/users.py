@@ -1,6 +1,6 @@
 # project/api/models.py
 
-
+from marshmallow import Schema, fields, ValidationError
 import datetime
 
 import jwt
@@ -8,6 +8,10 @@ from flask import current_app
 
 from project import db, bcrypt
 
+class UserSchema(Schema):
+    id = fields.Int(dump_only=True)
+    username = fields.Str(128)
+    email = fields.Str(128)
 
 class User(db.Model):
     __tablename__ = "users"
